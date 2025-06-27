@@ -4,8 +4,8 @@ from funciones import (
     seleccionar_empleado_por_dni,
     modificar_area_empleado,
     eliminar_empleado,
-    insertar_area,          # 🔽 NUEVO
-    listar_areas            # 🔽 NUEVO
+    insertar_area,
+    listar_areas
 )
 
 from modelos import db, Area, Empleado
