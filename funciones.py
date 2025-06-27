@@ -44,7 +44,7 @@ def insertar_empleado(nro_legajo, dni, nombre, apellido, id_area):
     try:
         area = Area.get(Area.id_area == id_area)
         empleado = Empleado.create(nro_legajo=nro_legajo, dni=dni, nombre=nombre, apellido=apellido, area=area)
-        return f"Empleado {empleado} insertado correctamente."
+        return f"✔️Empleado {empleado} insertado correctamente."
     except DoesNotExist:
         return "El área especificada no existe."
     except Exception as e:
@@ -55,13 +55,17 @@ def insertar_empleado(nro_legajo, dni, nombre, apellido, id_area):
 def seleccionar_empleado_por_dni(dni):
     try:
         empleado = Empleado.get(Empleado.dni == dni)
-        return str(empleado)
-    
+        return (
+            f"✔️ Empleado encontrado:\n"
+            f"Legajo: {empleado.nro_legajo}\n"
+            f"Nombre: {empleado.nombre} {empleado.apellido}\n"
+            f"DNI: {empleado.dni}\n"
+            f"Área: {empleado.area.nombre_area}"
+        )
     except DoesNotExist:
-         return "Empleado no encontrado."
-    
+        return "❌ Empleado no encontrado."
     except Exception as e:
-         return f"Error al seleccionar empleado: {e}"  
+        return f"⚠️ Error al seleccionar empleado: {e}"
     
 #Seleccionar todos los empleados o los registros de la tabla. 
 
@@ -83,7 +87,7 @@ def modificar_area_empleado(nro_legajo, nuevo_id_area):
         nuevo_area = Area.get(Area.id_area == nuevo_id_area)
         empleado.area = nuevo_area
         empleado.save()
-        return f"Área del empleado {empleado} modificada correctamente."
+        return f" ✔️Área del empleado {empleado} modificada correctamente."
     except DoesNotExist:
         return "Empleado o área no encontrado."
     except Exception as e:
@@ -94,10 +98,11 @@ def modificar_area_empleado(nro_legajo, nuevo_id_area):
 def eliminar_empleado(nro_legajo):
     try:
         empleado = Empleado.get(Empleado.nro_legajo == nro_legajo)
+        nombre = empleado.nombre
+        apellido = empleado.apellido
         empleado.delete_instance()
-        return f"Empleado {empleado} eliminado correctamente."
+        return f"✔️ Empleado {nombre} {apellido} (Legajo: {nro_legajo}) eliminado correctamente."
     except DoesNotExist:
-        return "Empleado no encontrado."
+        return "❌ Empleado no encontrado."
     except Exception as e:
-        return f"Error al eliminar empleado: {e}"
-    
+        return f"❌ Error al eliminar empleado: {e}"

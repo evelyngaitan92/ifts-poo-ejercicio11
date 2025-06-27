@@ -57,7 +57,8 @@ def main():
                 dni = int(input("Ingrese el DNI del empleado a buscar: "))
                 resultado = seleccionar_empleado_por_dni(dni)
                 print(resultado)
-            except ValueError: print("❌ El DNI debe ser un número.")
+            except ValueError:
+                print("❌ El DNI debe ser un número.")
 
         elif opcion == '3':
             print("\nLista de Empleados:")
@@ -76,8 +77,12 @@ def main():
             print(modificar_area_empleado(nro_legajo, nuevo_id_area))
 
         elif opcion == '5':
-            nro_legajo = int(input("Número de legajo del empleado a eliminar: "))
-            print(eliminar_empleado(nro_legajo, nombre))
+            try:
+                nro_legajo = int(input("Número de legajo del empleado a eliminar: "))
+                print(eliminar_empleado(nro_legajo))
+            except ValueError:
+                print("❌ El número de legajo debe ser un número entero.")
+
 
         elif opcion == '6':
             print("Saliendo del programa. 👋")
