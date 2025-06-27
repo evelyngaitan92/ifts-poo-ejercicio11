@@ -1,9 +1,3 @@
-# El programa debe solicitar al usuario que
-# ingrese por consola una de las siguientes opciones: 
-# • Opcion 4 Modificar el area de un empleado en función de su número de legajo. 
-# • Opcion 5 Eliminar un empleado a partir del número de legajo. 
-# • Opcion 6 Finalizar. 
-
 from modelos import Empleado, Area
 from peewee import DoesNotExist, Model, SqliteDatabase
 from database import db
