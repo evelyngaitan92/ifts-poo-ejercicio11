@@ -10,7 +10,7 @@ class BaseModel(Model):
 # • id int PRIMARY KEY AUTOINCREMENTAL NOT NULL 
 # • nombre_area text NOT NULL UNIQUE MAX_LENGTH=80 
 
-class Area(Model):
+class Area(BaseModel):
    id_area = AutoField(primary_key=True)
    nombre_area = CharField(unique=True, max_length=80)
 
@@ -23,9 +23,9 @@ class Area(Model):
 # • apellido text NOT NULL, 
 # • id_area int NOT NULL 
 
-class Empleado(Model):
+class Empleado(BaseModel):
     nro_legajo = IntegerField(unique=True)
-    di = IntegerField(unique=True)
+    dni= IntegerField(unique=True)
     nombre = CharField(max_length=50, null=False)
     apellido = CharField(max_length=50, null=False)
     area = ForeignKeyField(Area, backref='empleados')
